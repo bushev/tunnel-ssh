@@ -56,6 +56,7 @@ function createServer(config) {
         sshConnection.on('error', server.emit.bind(server, 'error'));
 
         netConnection.on('sshStream', function (sshStream) {
+            server.emit('forward-out');
             sshStream.on('error', function () {
                 server.close();
             });
